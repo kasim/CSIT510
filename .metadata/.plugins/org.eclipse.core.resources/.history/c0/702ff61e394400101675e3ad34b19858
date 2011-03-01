@@ -1,0 +1,6 @@
+userPasswordFile.txt
+	Add two more lines at top, the first line indicates the concurrency type, the second line indicates the tax strategy.
+
+productListFile.txt
+	Add two more lines at top, the first line indicates the event discount, the second line indicates the membership discount.
+	At the end of each product line, discount number can be added to indicates the discount of a specific product. Without this discount number means the product don't have a special discount.
