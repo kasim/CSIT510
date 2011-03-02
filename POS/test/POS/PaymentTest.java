@@ -4,10 +4,14 @@
 package POS;
 
 
+import static org.junit.Assert.fail;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.Assert;
 
 /**
  * @author kasim
@@ -43,4 +47,23 @@ public class PaymentTest {
 	public void tearDown() throws Exception {
 	}
 
+	@Test
+	public void testPayment() throws Exception {
+		Assert.fail("Not yet implemented");
+	}
+
+	@Test
+	public void addDiscount() throws Exception {
+		Assert.fail("Not yet implemented");
+	}
+
+	@Test
+	public void afterDiscount() throws Exception {
+		Assert.fail("Not yet implemented");
+	}
+
+	@Test
+	public void showDiscount() throws Exception {
+		Assert.fail("Not yet implemented");
+	}
 }
