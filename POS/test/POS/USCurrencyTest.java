@@ -48,6 +48,9 @@ public class USCurrencyTest {
 		usc = null;
 	}
 
+	/**
+	 * @throws java.lang.Exception
+	 */
 	@Test
 	public void testShow() throws Exception {
 		String expected = "US$";

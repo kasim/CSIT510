@@ -8,13 +8,15 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.Assert;
 
 /**
  * @author kasim
  *
  */
 public class CurrencyTest {
-
+	Currency c = null;
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -34,6 +36,7 @@ public class CurrencyTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		c = new MockCurrency();
 	}
 
 	/**
@@ -41,6 +44,23 @@ public class CurrencyTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		c = null;
 	}
 
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Test
+	public void testShow() throws Exception {
+		String expected = "test";
+		Assert.assertEquals(expected, c.show());
+	}
+}
+
+final class MockCurrency extends Currency{	
+	@Override
+	public String show() {
+		String test = "test";
+		return test;
+	}
 }

@@ -51,6 +51,9 @@ public class ItemTest {
 		item = null;
 	}
 
+	/**
+	 * @throws java.lang.Exception
+	 */
 	@Test
 	public void testItem() throws Exception {
 		String itemName = "Test Item 01";
@@ -62,6 +65,9 @@ public class ItemTest {
 		Assert.assertEquals(price, item.price);
 	}
 	
+	/**
+	 * @throws java.lang.Exception
+	 */
 	@Test
 	public void testSetDiscount() throws Exception{
 		Discount discount = null;
