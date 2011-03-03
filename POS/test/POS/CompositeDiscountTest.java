@@ -4,6 +4,7 @@
 package POS;
 
 import static org.junit.Assert.*;
+import junit.framework.Assert;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,6 +17,8 @@ import org.junit.Test;
  *
  */
 public class CompositeDiscountTest {
+	int size = 10;
+	CompositeDiscount expected = null;
 	CompositeDiscount cd = null;
 	/**
 	 * @throws java.lang.Exception
@@ -37,6 +40,14 @@ public class CompositeDiscountTest {
 	@Before
 	public void setUp() throws Exception {
 		cd = new CompositeDiscount();
+		expected = new CompositeDiscount();
+		MockDiscount mDiscount = new MockDiscount();
+		for(int i=0; i<=size; i++){
+			mDiscount.setDiscount(i*0.1f);
+			mDiscount.setDiscountMessage("" + (i*0.1f));
+			expected.add(mDiscount);
+			cd.add(mDiscount);
+		}
 	}
 
 	/**
@@ -44,6 +55,8 @@ public class CompositeDiscountTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		expected = null;
+		cd = null;
 	}
 
 	/**
@@ -51,7 +64,8 @@ public class CompositeDiscountTest {
 	 */
 	@Test
 	public void testCompositeDiscount() {
-		fail("Not yet implemented");
+		Assert.assertEquals(expected.discount(), cd.discount());
+		Assert.assertEquals(expected.discountMessage(), cd.discountMessage());
 	}
 
 	/**
@@ -59,7 +73,7 @@ public class CompositeDiscountTest {
 	 */
 	@Test
 	public void testDiscount() {
-		fail("Not yet implemented");
+		Assert.assertEquals(expected.discount(), cd.discount());
 	}
 
 	/**
@@ -67,7 +81,17 @@ public class CompositeDiscountTest {
 	 */
 	@Test
 	public void testAdd() {
-		fail("Not yet implemented");
+		cd = new CompositeDiscount();
+		expected = new CompositeDiscount();
+		MockDiscount mDiscount = new MockDiscount();
+		for(int i=0; i<=size; i++){
+			mDiscount.setDiscount(i*0.1f);
+			mDiscount.setDiscountMessage("" + (i*0.1f));
+			expected.add(mDiscount);
+			cd.add(mDiscount);
+			Assert.assertEquals(expected.discount(), cd.discount());
+			Assert.assertEquals(expected.discountMessage(), cd.discountMessage());
+		}
 	}
 
 	/**
@@ -75,7 +99,15 @@ public class CompositeDiscountTest {
 	 */
 	@Test
 	public void testRemove() {
-		fail("Not yet implemented");
+		MockDiscount mDiscount = new MockDiscount();
+		for(int i=size; i>=0; i--){
+			mDiscount.setDiscount(i*0.1f);
+			mDiscount.setDiscountMessage("" + (i*0.1f));
+			expected.remove(mDiscount);
+			cd.remove(mDiscount);
+			Assert.assertEquals(expected.discount(), cd.discount());
+			Assert.assertEquals(expected.discountMessage(), cd.discountMessage());
+		}
 	}
 
 	/**
@@ -83,7 +115,46 @@ public class CompositeDiscountTest {
 	 */
 	@Test
 	public void testDiscountMessage() {
-		fail("Not yet implemented");
+		Assert.assertEquals(expected.discountMessage(), cd.discountMessage());
 	}
 
+	private class MockDiscount implements Discount{
+		private float discount;
+		private String discountMessage;
+		
+		public float getDiscount() {
+			return this.discount;
+		}
+
+		public void setDiscount(float discount) {
+			this.discount = discount;
+		}
+
+		public String getDiscountMessage() {
+			return this.discountMessage;
+		}
+
+		public void setDiscountMessage(String discountMessage) {
+			this.discountMessage = discountMessage;
+		}
+		
+		public MockDiscount(){
+			this(0.0f, "");
+		}
+		
+		public MockDiscount(float discount, String discountMessage){
+			setDiscount(discount);
+			setDiscountMessage(discountMessage);
+		}
+		
+		@Override
+		public float discount() {
+			return getDiscount();
+		}
+
+		@Override
+		public String discountMessage() {
+			return getDiscountMessage();
+		}
+	}
 }

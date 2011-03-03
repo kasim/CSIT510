@@ -8,12 +8,15 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.Assert;
 
 /**
  * @author kasim
  *
  */
 public class TaxModelTest {
+	MockTaxModel mTaxModel = null;
 
 	/**
 	 * @throws java.lang.Exception
@@ -34,6 +37,7 @@ public class TaxModelTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		mTaxModel = new MockTaxModel();
 	}
 
 	/**
@@ -41,6 +45,26 @@ public class TaxModelTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		mTaxModel = null;
 	}
-
+	
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Test
+	public void testAfterTaxPrice() throws Exception {
+		float expected = 0.1f;
+		
+		Assert.assertEquals(expected, mTaxModel.afterTaxPrice(expected), 0);
+	}
+	
+	private class MockTaxModel implements TaxModel{
+		public MockTaxModel(){
+		}
+				
+		@Override
+		public float afterTaxPrice(float price) {
+			return price;
+		}
+	}
 }

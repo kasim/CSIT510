@@ -52,15 +52,15 @@ public class CurrencyTest {
 	 */
 	@Test
 	public void testShow() throws Exception {
-		String expected = "test";
+		String expected = "test$";
 		Assert.assertEquals(expected, c.show());
 	}
-}
-
-final class MockCurrency extends Currency{	
-	@Override
-	public String show() {
-		String test = "test";
-		return test;
+	
+	private class MockCurrency extends Currency{	
+		@Override
+		public String show() {
+			String actual = "test$";
+			return actual;
+		}
 	}
 }

@@ -8,13 +8,15 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.Assert;
 
 /**
  * @author kasim
  *
  */
 public class TMVATTest {
-
+	TMVAT tmvat = null;
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -34,6 +36,7 @@ public class TMVATTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		tmvat = new TMVAT();
 	}
 
 	/**
@@ -41,6 +44,16 @@ public class TMVATTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		tmvat = null;
 	}
 
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Test
+	public void testAfterTaxPrice() throws Exception {
+		float expected = 0.1f;
+		
+		Assert.assertEquals(expected, tmvat.afterTaxPrice(expected), 0);
+	}
 }

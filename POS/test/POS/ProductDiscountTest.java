@@ -8,12 +8,16 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.Assert;
 
 /**
  * @author kasim
  *
  */
 public class ProductDiscountTest {
+	float testValue = 1.5f;
+	ProductDiscount pDiscount = null;
 
 	/**
 	 * @throws java.lang.Exception
@@ -34,6 +38,7 @@ public class ProductDiscountTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		pDiscount = new ProductDiscount(testValue);
 	}
 
 	/**
@@ -41,6 +46,23 @@ public class ProductDiscountTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		pDiscount = null;
 	}
-
+	
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Test
+	public void testDiscount() throws Exception {
+		Assert.assertEquals(testValue, pDiscount.discount(), 0);
+	}
+	
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Test
+	public void testDiscountMessage() throws Exception {
+		String expected = "\tProduct Discount: ";
+		Assert.assertEquals(expected, pDiscount.discountMessage());
+	}
 }

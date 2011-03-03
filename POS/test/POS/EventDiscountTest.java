@@ -8,13 +8,16 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.Assert;
 
 /**
  * @author kasim
  *
  */
 public class EventDiscountTest {
-
+	float testValue = 1.5f;
+	EventDiscount eDiscount = null;
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -34,6 +37,7 @@ public class EventDiscountTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		eDiscount = new EventDiscount(testValue);
 	}
 
 	/**
@@ -41,6 +45,25 @@ public class EventDiscountTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		eDiscount = null;
 	}
-
+	
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Test
+	public void testDiscount() throws Exception {
+		float expected = testValue; 
+		Assert.assertEquals(expected, eDiscount.discount(), 0);
+	}
+	
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Test
+	public void testDiscountMessage() throws Exception {
+		String expected = "\tEvent Discount: " + eDiscount.discount()*100 + "%" + "\n";
+		
+		Assert.assertEquals(expected, eDiscount.discountMessage());
+	}
 }
